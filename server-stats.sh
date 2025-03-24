@@ -36,3 +36,11 @@ printf "Disk Usage:\n  Used: %s (%.1f%%)\n  Free: %s (%.1f%%)\n%s\n" \
   "${DISK_FREE_PCT}" \
   "${SEPARATOR}"
 
+# Top 5 Processes by CPU Usage
+TOP_5_CPU=$(top -b -n 1 | tail +8 | sort -r -k9 | awk '{ print "  " $9 "%", $12, "(PID: " $1 ")" }' | head -n 5)
+printf "Top 5 Processes by CPU Usage:\n%s\n%s\n" "${TOP_5_CPU}" "${SEPARATOR}"
+
+# Top 5 Processes by Memory Usage
+TOP_5_MEM=$(top -b -n 1 | tail +8 | sort -r -k10 | awk '{ print "  " $10 "%", $12, "(PID: " $1 ")" }' | head -n 5)
+printf "Top 5 Processes by Memory Usage:\n%s\n%s\n" "${TOP_5_MEM}" "${SEPARATOR}"
+
