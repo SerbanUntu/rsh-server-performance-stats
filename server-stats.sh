@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # Constants
+TOP_DATA=$(top -b -n 1)
 SEPARATOR="=============================================="
 echo "${SEPARATOR}"
 
 # CPU Usage
-FREE_CPU=$(top -n 1 | head -n 3 | tail -n 1 | cut -d ',' -f 4 | tr -d " id" | cut -c 17-20)
+FREE_CPU=$(echo "${TOP_DATA}" | head -n 3 | tail -n 1 | cut -d ',' -f 4 | awk '{ print $1 }')
 USED_CPU=$(echo "100 - ${FREE_CPU}" | bc)
 printf "Total CPU Usage: %.1f%%\n%s\n" "${USED_CPU}" "${SEPARATOR}"
 
@@ -37,10 +38,10 @@ printf "Disk Usage:\n  Used: %s (%.1f%%)\n  Free: %s (%.1f%%)\n%s\n" \
   "${SEPARATOR}"
 
 # Top 5 Processes by CPU Usage
-TOP_5_CPU=$(top -b -n 1 | tail +8 | sort -r -k9 | awk '{ print "  " $9 "%", $12, "(PID: " $1 ")" }' | head -n 5)
+TOP_5_CPU=$(echo "${TOP_DATA}" | tail +8 | sort -r -k9 | awk '{ print "  " $9 "%", $12, "(PID: " $1 ")" }' | head -n 5)
 printf "Top 5 Processes by CPU Usage:\n%s\n%s\n" "${TOP_5_CPU}" "${SEPARATOR}"
 
 # Top 5 Processes by Memory Usage
-TOP_5_MEM=$(top -b -n 1 | tail +8 | sort -r -k10 | awk '{ print "  " $10 "%", $12, "(PID: " $1 ")" }' | head -n 5)
+TOP_5_MEM=$(echo "${TOP_DATA}" | tail +8 | sort -r -k10 | awk '{ print "  " $10 "%", $12, "(PID: " $1 ")" }' | head -n 5)
 printf "Top 5 Processes by Memory Usage:\n%s\n%s\n" "${TOP_5_MEM}" "${SEPARATOR}"
 
