@@ -25,7 +25,7 @@ printf "Memory Usage:\n  Used: %s (%.1f%%)\n  Free: %s (%.1f%%)\n%s\n" \
   "${SEPARATOR}"
 
 # Disk Usage
-DISK_DATA=$(df -h | grep "C:\\\\" | tr -s ' ')
+DISK_DATA=$(df -h / | tail -n 1 | tr -s ' ')
 DISK_USED=$(cut -d ' ' -f 3 <<< "${DISK_DATA}")
 DISK_FREE=$(cut -d ' ' -f 4 <<< "${DISK_DATA}")
 DISK_USED_PCT=$(echo "${DISK_DATA}" | cut -d ' ' -f 5 | tr -d '%')
