@@ -23,3 +23,16 @@ printf "Memory Usage:\n  Used: %s (%.1f%%)\n  Free: %s (%.1f%%)\n%s\n" \
   "${MEM_FREE_PCT}" \
   "${SEPARATOR}"
 
+# Disk Usage
+DISK_DATA=$(df -h | grep "C:\\\\" | tr -s ' ')
+DISK_USED=$(cut -d ' ' -f 3 <<< "${DISK_DATA}")
+DISK_FREE=$(cut -d ' ' -f 4 <<< "${DISK_DATA}")
+DISK_USED_PCT=$(echo "${DISK_DATA}" | cut -d ' ' -f 5 | tr -d '%')
+DISK_FREE_PCT=$(echo "100 - ${DISK_USED_PCT}" | bc -l)
+printf "Disk Usage:\n  Used: %s (%.1f%%)\n  Free: %s (%.1f%%)\n%s\n" \
+  "${DISK_USED}" \
+  "${DISK_USED_PCT}" \
+  "${DISK_FREE}" \
+  "${DISK_FREE_PCT}" \
+  "${SEPARATOR}"
+
