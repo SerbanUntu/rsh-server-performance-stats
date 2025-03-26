@@ -1,22 +1,29 @@
-# Server Performance Stats
+# Roadmap.sh DevOps Projects
 
-A script that analyses the performance of a server.
+1. [Server Performance Stats](https://roadmap.sh/projects/server-stats) ✅
+2. Log Archive Tool
+3. Nginx Log Analyser
+4. GitHub Pages Deployment
+5. SSH Remote Server Setup
+6. Static Site Server
+7. Basic DNS Setup
+8. Simple Monitoring
+9. Dummy Systemd Service
+10. Basic Dockerfile
+11. EC2 Instance
+12. Configuration Management
+13. IaC on DigitalOcean
+14. Node.js Service Deployment
+15. Dockerized Service
+16. Multi-Container Application
+17. Automated DB Backups
+18. Bastion Host
+19. File integrity checker
+20. Blue-Green Deployment
+21. Prometheus and Grafana
+22. Multi-Service Application
+23. Service Discovery
 
-## Instructions
+All projects can be found on [roadmap.sh](https://roadmap.sh/devops/projects)
 
-1. Clone the repository using SSH
-  ```
-  git clone git@github.com:SerbanUntu/rsh-server-performance-stats.git
-  cd rsh-server-performance-stats
-  ```
-2. Grant execute permissions to the script
-  ```
-  chmod u+x ./server-stats.sh
-  ```
-3. Run the script 
-  ```
-  ./server-stats.sh
-  ```
-
-Part of the DevOps track on [roadmap.sh](https://roadmap.sh/projects/server-stats)
-
+Folder structure inspired by [this](https://github.com/AMM48/devops-lab) repository.
